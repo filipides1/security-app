@@ -1,0 +1,22 @@
+<h2>Konfiguracija sustava</h2>
+
+<div class="box">
+    <h3>Osjetljive informacije o sustavu</h3>
+    <% if (config.brokenAccessControlEnabled) { %>
+        <p><strong>RANJIVI NAČIN RADA - Informacije su javno dostupne</strong></p>
+        <% } else { %>
+            <p><strong>SIGURAN NAČIN RADA - Samo za admina</strong></p>
+            <% } %>
+
+                <ul>
+                    <li><strong>Database:</strong>
+                        <%= systemConfig.dbConnection %>
+                    </li>
+                    <li><strong>Secret Key:</strong>
+                        <%= systemConfig.secretKey %>
+                    </li>
+                    <li><strong>Admin Email:</strong>
+                        <%= systemConfig.adminEmail %>
+                    </li>
+                </ul>
+</div>

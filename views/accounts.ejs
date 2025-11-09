@@ -1,0 +1,40 @@
+<h2>Upravljanje računima</h2>
+
+<div class="box">
+    <h3>BAC Demo: Izmjena uloga u URL-u</h3>
+    <% if (config.roleBasedUrlAccessEnabled) { %>
+        <p><strong>RANJIVI NAČIN RADA</strong></p>
+        <p>Promjeni zadnji URL parametar u user/admin za promjenu uloga.</p>
+        <% } %>
+            <p>Trenutna uloga ulogirane sesije: <strong>
+                    <%= role %>
+                </strong></p>
+            <p>Uloga koju smo postigli mjenjanjem URL-a: <strong>
+                    <%= effectiveRole %>
+                </strong></p>
+
+
+</div>
+
+<div class="box">
+    <h3>Računi vidljivi ulozi <%= effectiveRole %>:</h3>
+    <table border="1" style="width: 100%;">
+        <tr>
+            <th>ID</th>
+            <th>Vlasnik</th>
+            <th>Stanje</th>
+        </tr>
+        <% accounts.forEach(acc=> { %>
+            <tr>
+                <td>
+                    <%= acc.id %>
+                </td>
+                <td>
+                    <%= acc.owner %>
+                </td>
+                <td>$<%= acc.balance %>
+                </td>
+            </tr>
+            <% }); %>
+    </table>
+</div>

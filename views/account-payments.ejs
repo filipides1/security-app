@@ -1,0 +1,75 @@
+<h2>Plaćanja</h2>
+
+<div class="box">
+    <h3>BAC Demo 2: Referenca na objekte</h3>
+    <% if (config.insecureDirectObjectRefsEnabled) { %>
+        <p><strong>RANJIVI NAČIN RADA</strong></p>
+        <p>Vidljive su uplate ulogiranog korisnika. Mjenjanjem referenci u URL-u možete pristupiti tuđim uplatama.</p>
+        <p>Odaberite jednu od uplata pristiskom na 'Detalji' kako bi se pojavio query u URL-u kojeg tada možete mjenjati.</p>
+        <p>Lista plaćanja ID: [user: 11, 12, 13] [admin: 14, 15, 16]</p>
+    <% } else { %>
+        <p><strong>SIGURAN NAČIN RADA</strong></p>
+        <p>Korisniku su dostupne samo njegove uplate.</p>
+        <p>Lista plaćanja ID: [user: 11, 12, 13] [admin: 14, 15, 16]</p>
+    <% } %>
+</div>
+
+<div class="box">
+    <h3>Dostupna plaćanja</h3>
+    <% if (availablePayments.length === 0) { %>
+        <p>Nema dostupnih uplata.</p>
+    <% } else { %>
+        <table border="1" style="width: 100%;">
+            <tr>
+                <th>ID</th>
+                <th>Vlasnik</th>
+                <th>Iznos</th>
+                <th>Datum</th>
+                <th>Akcija</th>
+            </tr>
+            <% availablePayments.forEach(p => { %>
+                <tr <% if (payment && p.id === payment.id) { %>style="background-color: #f0f0f0;"<% } %>>
+                    <td><%= p.id %></td>
+                    <td><%= p.owner %></td>
+                    <td>$<%= p.amount %></td>
+                    <td><%= p.date %></td>
+                    <td>
+                        <% if (payment && p.id === payment.id) { %>
+                            <strong>Odabrano</strong>
+                        <% } else { %>
+                            <a href="/account-payments?id=<%= p.id %>">Detalji</a>
+                        <% } %>
+                    </td>
+                </tr>
+            <% }); %>
+        </table>
+    <% } %>
+</div>
+
+<% if (payment) { %>
+    <div class="box">
+        <h3>Detalji o plaćanju</h3>
+        <table border="1" style="width: 100%;">
+            <tr>
+                <th>ID</th>
+                <td><%= payment.id %></td>
+            </tr>
+            <tr>
+                <th>Vlasnik</th>
+                <td><%= payment.owner %></td>
+            </tr>
+            <tr>
+                <th>Iznos</th>
+                <td>$<%= payment.amount %></td>
+            </tr>
+            <tr>
+                <th>Datum</th>
+                <td><%= payment.date %></td>
+            </tr>
+            <tr>
+                <th>Tip</th>
+                <td><%= payment.type %></td>
+            </tr>
+        </table>
+    </div>
+<% } %>

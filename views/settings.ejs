@@ -1,0 +1,30 @@
+<h2>Postavke</h2>
+<form method="post">
+    <div class="box">
+        <h3>XSS Konfiguracija</h3>
+        <label>
+            <input type="checkbox" name="xss" <%=config.xssEnabled ? 'checked' : '' %>>
+            Omogući XSS ranjivost
+        </label>
+    </div>
+
+    <div class="box">
+        <h3>BAC Konfiguracija</h3>
+        <label>
+            <input type="checkbox" name="rbua" <%=config.roleBasedUrlAccessEnabled ? 'checked' : '' %>>
+            BAC Demo 1 - Omogući pristup URL-ovima na temelju uloga
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="idor" <%=config.insecureDirectObjectRefsEnabled ? 'checked' : '' %>>
+            BAC Demo 2 - Omogući direktne reference na objekte 
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="bac" <%=config.brokenAccessControlEnabled ? 'checked' : '' %>>
+            BAC Demo 3 - Omogući pristup osjetljivim informacijama
+        </label>
+    </div>
+
+    <button type="submit">Save Settings</button>
+</form>

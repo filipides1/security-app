@@ -1,0 +1,11 @@
+<h2>Login</h2>
+<form action="/login" method="post">
+    <div><input name="username" placeholder="username"></div>
+    <div><input name="password" type="password" placeholder="password"></div>
+    <button>Login</button>
+</form>
+<% if (err) { %>
+    <p style="color:red">
+        <%= err %>
+    </p>
+<% } %>

@@ -1,0 +1,16 @@
+<h2>XSS demo</h2>
+<form action="/search" method="get">
+    <input name="q" value="<%= typeof q !== 'undefined' ? q : '' %>" placeholder="Search..." />
+    <button type="submit">Search</button>
+</form>
+
+<div class="box">
+    <% if (xssEnabled) { %>
+        <p><strong>RANJIVI NAČIN RADA</strong></p>
+        <%- q %>
+    <% } else { %>
+        <p><strong>SIGURAN NAČIN RADA</strong></p>
+        <%= q %>
+    <% } %>
+    <p>Isprobaj: &lt;script&gt;alert(document.cookie)&lt;/script&gt;</p>
+</div>
